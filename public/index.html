@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab&subset=latin,cyrillic-ext,latin-ext,greek-ext,greek,cyrillic,vietnamese' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <title>GimmeGIF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container-fluid header">
+        <img class="gimmegiflogo" src="images/gimmegiflogo.png">
+        <div class="row row-fluid text-center">
+            <form id="gifForm" class="form-horizontal span6" role="form" action="">
+                <input type="text" value="" class="form-control input-hg" id="inputGIF" placeholder="Ex: grumpy cat">
+                <input type="submit" class="btn btn-hg btn-primary btngif" id="submit_btn" value="gimme!"/>
+            </form>
+        </div>
+        <div class="row text-center" id="responsive_headline2">
+            <p>Email your GIF requests to: <a href="mailto:gimmegif@bymail.in">gimmegif@bymail.in</a></p>
+        </div>
+    </div>
+    <div class="giflist">
+        <div class="container-fluid">
+            <br>
+            <div class="row text-center">
+                <div id="queue"> </div>
+                <br>
+                <p id="responsive_headline4">Gimmegif made by <a class="noislink" target="_blank" href="http://twitter.com/heitorburger">Heitor Tashiro Sergent</a> and <a class="noislink" target="_blank" href="http://twitter.com/rafaelfe">Rafael Fernandes</a></p>
+                <p>Powered by <a class="companieslink"target="_blank" href="http://giphy.com">Giphy</a> and <a class="companieslink" target="_blank" href="http://sendgrid.com">SendGrid</a></p>
+            </div>
+        </div>
+    </div>
+    <div id="hidden-resizer" style="visibility: hidden"></div>
+    </div><!-- /.container -->
+
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="/socket.io/socket.io.js"> </script>
+    <script type="text/javascript" src="http://static.evernote.com/noteit.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script>
+        jQuery("#responsive_headline").fitText(0.57);
+        jQuery("#responsive_headline2").fitText();
+        jQuery("#responsive_headline3").fitText();
+        jQuery("#responsive_headline4").fitText(2.5);
+    </script>
+  </body>
+</html>
