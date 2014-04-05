@@ -17,7 +17,6 @@ var express = require('express')
   , pollingOnly = process.env.XHR_POLLING_ONLY || false
   , domain = process.env.DOMAIN || 'localhost'
   , io = require('socket.io').listen(server)
-  , helpers = require('./helpers.js')
   , mimelib = require("mimelib")
   , request = require('request')
   , sendgrid = require('sendgrid') (
