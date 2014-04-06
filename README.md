@@ -5,6 +5,12 @@ This is a demo application that allows the user to search for GIFs, built with N
 ## Usage
 
 ```
+cp .env.example .env
+```
+
+Edit the contents of `.env`.
+
+```
 npm install
 node server.js
 ```

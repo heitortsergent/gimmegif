@@ -19,10 +19,12 @@ var express = require('express')
   , io = require('socket.io').listen(server)
   , mimelib = require("mimelib")
   , request = require('request')
-  , sendgrid = require('sendgrid') (
-      (process.env.SENDGRID_USER || 'YOUR_SENDGRID_USERNAME'),
-      (process.env.SENDGRID_PASS || 'YOUR_SENDGRID_PASSWORD')
-    );
+  , dotenv = require('dotenv');
+
+dotenv.load();
+var SENDGRID_USER     = process.env.SENDGRID_USER;
+var SENDGRID_PASSWORD = process.env.SENDGRID_PASSWORD;
+var sendgrid = require('sendgrid')(SENDGRID_USER, SENDGRID_PASSWORD);
 
 var GiphyAPIKey = "dc6zaTOxFJmzC";
 var applicationReplyUrl = "http://yourappurl.jit.su/reply";

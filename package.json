@@ -21,6 +21,7 @@
   "author": "Heitor <heitor@sendgrid.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "0.2.7",
     "express": ">= 2.5.x",
     "socket.io": ">= 0.9.x",
     "sendgrid": ">= 0.2.x",
