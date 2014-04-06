@@ -1,3 +1,8 @@
+<p align="center">
+<img align="center" src="api_giphy_logo_sparkle_clear.gif" width="330" alt="API Giphy logo"/>
+</p>
+
+
 # gimmegif
 
 This is a demo application that allows the user to search for GIFs, built with Node.js, that uses both Giphy and the SendGrid API. You can use the website to search for GIFs, or you can email <gimmegif@bymail.in> with a query in the subject, to get an email response back with the GIF and also have that appear in the application using the SendGrid Inbound Parse API.
