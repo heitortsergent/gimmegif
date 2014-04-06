@@ -84,7 +84,15 @@ First of all, open `package.json` and change the `domains` and `subdomains` to t
 ],
 ```
 
-After that, create a Nodejitsu account, install the [jitsu CLI](https://github.com/nodejitsu/jitsu), log in, and just run:
+After that, create a Nodejitsu account, install the [jitsu CLI](https://github.com/nodejitsu/jitsu) and log in. For the SendGrid email to be sent back, after the user requests it through the Inbound Parse Webhook, you need to set the env variables inside nodejitsu:
+
+```
+jitsu env set SENDGRID_USER your_sendgrid_username
+jitsu env set SENDGRID_USER your_sendgrid_password
+jitsu env set GIPHY_API_KEY your_giphy_api_key
+```
+
+And finally run:
 
 ```
 jitsu deploy
