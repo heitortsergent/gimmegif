@@ -26,8 +26,9 @@ var SENDGRID_USER     = process.env.SENDGRID_USER;
 var SENDGRID_PASSWORD = process.env.SENDGRID_PASSWORD;
 var sendgrid = require('sendgrid')(SENDGRID_USER, SENDGRID_PASSWORD);
 
-var GiphyAPIKey = "dc6zaTOxFJmzC";
+var GiphyAPIKey = process.env.GIPHY_API_KEY;
 var applicationReplyUrl = "http://yourappurl.jit.su/reply";
+var fromReplyEmail = 'gif@gimmegif.jit.su';
 
 // Configure the server
 app.configure(function() {
@@ -67,7 +68,7 @@ app.post('/email', function(req,res) {
 app.post('/reply', function(req, res) {
   sendgrid.send({
     to:       req.body.userEmail,
-    from:     'gif@gimmegif.jit.su',
+    from:     fromReplyEmail,
     subject:  "Here's your awesome gif!",
     html:     "Hi " + req.body.senderName + "!" + "<br><br>"
     + "The GIF you requested for " + req.body.gifTag + " is here thanks to Giphy and SendGrid!" + "<br><br>"
