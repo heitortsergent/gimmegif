@@ -1,10 +1,10 @@
 {
   "name": "gimmegif",
   "version": "0.0.3-14",
-  "subdomain": "gimmegif",
+  "subdomain": "yoururl",
   "domains": [
-    "gimmegif.com",
-    "www.gimmegif.com"
+    "yoururl.com",
+    "www.yoururl.com"
   ],
   "description": "GIFFING with Giphy and SendGrid",
   "main": "server.js",
