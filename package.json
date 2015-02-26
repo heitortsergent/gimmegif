@@ -25,6 +25,7 @@
     "dotenv": "0.2.7",
     "express": "~3.x.x",
     "mimelib": "0.2.x",
+    "multer": "^0.1.8",
     "request": "~2.33.x",
     "sendgrid": "~1.x.x",
     "serve-static": "~1.9.1",

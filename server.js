@@ -12,14 +12,12 @@
 var express = require('express')
   , bodyParser = require('body-parser')
   , serveStatic = require('serve-static')
+  , multer  = require('multer')
   , path = require('path')
   , app = express()
   , http = require('http')
   , port = process.env.PORT || 3000
-  , server = app.listen(port)
-  , pollingOnly = process.env.XHR_POLLING_ONLY || false
   , domain = process.env.DOMAIN || 'localhost'
-  , io = require('socket.io').listen(server)
   , mimelib = require("mimelib")
   , request = require('request')
   , dotenv = require('dotenv');
@@ -33,19 +31,12 @@ var GiphyAPIKey = process.env.GIPHY_API_KEY;
 var fromReplyEmail = 'gif@gimmegif.io';
 
 var env = process.env.NODE_ENV || 'development';
-if ('development' == env) {
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  app.use(serveStatic('public/ftp', {'index': ['default.html', 'default.htm']}))
-  app.use(express.static(path.join(__dirname, 'public')));
-}
 
-// Don't use Socket.io's WS support if flag is set
-if(pollingOnly) {
-  io.configure(function() {
-    io.set("transports", ["xhr-polling"]);
-  });
-}
+app.set('port', port);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(multer());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/gimme', function(req,res) {
   console.log("app.post /gimme");
@@ -58,6 +49,7 @@ app.post('/gimme', function(req,res) {
 
 // Listen for posts to '/email' from sendgrid
 app.post('/email', function(req,res) {
+  console.log(req.body);
   var addresses = mimelib.parseAddresses(req.body.from);
   var senderName = addresses[0].name;
   var userEmail = addresses[0].address;
@@ -65,7 +57,7 @@ app.post('/email', function(req,res) {
   
   getRandomGIF(gifTag, senderName, userEmail);
 
-  res.end();  
+  res.sendStatus(200);
 });
 
 function sendEmail(imgUrl, gifTag, senderName, userEmail) {
@@ -81,7 +73,6 @@ function sendEmail(imgUrl, gifTag, senderName, userEmail) {
   }, function(err, json) {
     if (err) { return console.error(err); }
   });
-  res.end();
 }
 
 function getRandomGIF(gifTag, senderName, userEmail) {
@@ -119,3 +110,9 @@ function getRandomGIF(gifTag, senderName, userEmail) {
     });
   })(gifTag, senderName, userEmail);
 }
+
+var server = app.listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
+var io = require('socket.io').listen(server)
