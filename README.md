@@ -9,7 +9,7 @@ This is a demo application that allows the user to search for GIFs, built with N
 
 ## Live Example
 
-Head over to [http://gimmegif.jit.su/](http://gimmegif.jit.su/) to see the app running. You can search inside the app for a GIF, or by sending an email to [gif@heitortsergent.bymail.in](mailto:gif@heitortsergent.bymail.in) . Anyone with the web page open will see the GIF that was requested.
+Head over to [https://rocky-reaches-6505.herokuapp.com/](https://rocky-reaches-6505.herokuapp.com/) to see the app running. You can search inside the app for a GIF, or by sending an email to [gif@heitortsergent.bymail.in](mailto:gif@heitortsergent.bymail.in) . Anyone with the web page open will see the GIF that was requested.
 
 ## Usage
 
@@ -41,6 +41,14 @@ After making the changes, to test the app just run:
 npm install
 node server.js
 ```
+
+Or if you have [azk](http://www.azk.io/) installed, just run:
+
+```
+$ azk start
+```
+
+And that will also setup ngrok for you. ;)
 
 ##SendGrid Inbound Parse Webhook
 
