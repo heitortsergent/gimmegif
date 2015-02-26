@@ -10,6 +10,9 @@
 
 // Dependencies
 var express = require('express')
+  , bodyParser = require('body-parser')
+  , serveStatic = require('serve-static')
+  , path = require('path')
   , app = express()
   , http = require('http')
   , port = process.env.PORT || 3000
@@ -27,16 +30,15 @@ var SENDGRID_PASSWORD = process.env.SENDGRID_PASSWORD;
 var sendgrid = require('sendgrid')(SENDGRID_USER, SENDGRID_PASSWORD);
 
 var GiphyAPIKey = process.env.GIPHY_API_KEY;
-var applicationReplyUrl = "http://yourappurl.jit.su/reply";
-var fromReplyEmail = 'gif@gimmegif.jit.su';
+var fromReplyEmail = 'gif@gimmegif.io';
 
-// Configure the server
-app.configure(function() {
-  app.use(express.urlencoded());
-  app.use(express.json());
-  app.use(express.bodyParser());
-  app.use(express.static(__dirname + '/public'));
-});
+var env = process.env.NODE_ENV || 'development';
+if ('development' == env) {
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  app.use(serveStatic('public/ftp', {'index': ['default.html', 'default.htm']}))
+  app.use(express.static(path.join(__dirname, 'public')));
+}
 
 // Don't use Socket.io's WS support if flag is set
 if(pollingOnly) {
@@ -46,6 +48,7 @@ if(pollingOnly) {
 }
 
 app.post('/gimme', function(req,res) {
+  console.log("app.post /gimme");
   var gifTag = req.body.gifTag;
 
   getRandomGIF(gifTag);
@@ -65,24 +68,25 @@ app.post('/email', function(req,res) {
   res.end();  
 });
 
-app.post('/reply', function(req, res) {
+function sendEmail(imgUrl, gifTag, senderName, userEmail) {
   sendgrid.send({
-    to:       req.body.userEmail,
+    to:       userEmail,
     from:     fromReplyEmail,
     subject:  "Here's your awesome gif!",
-    html:     "Hi " + req.body.senderName + "!" + "<br><br>"
-    + "The GIF you requested for " + req.body.gifTag + " is here thanks to Giphy and SendGrid!" + "<br><br>"
-    + "<img src=\""+ req.body.imgUrl + "\">" + "<br><br>"
+    html:     "Hi " + senderName + "!" + "<br><br>"
+    + "The GIF you requested for " + gifTag + " is here thanks to Giphy and SendGrid!" + "<br><br>"
+    + "<img src=\""+ imgUrl + "\">" + "<br><br>"
     + "Have an awesome day!", 
     text:     'Your awesome gif text.'
   }, function(err, json) {
     if (err) { return console.error(err); }
-    console.log(json);
   });
   res.end();
-});
+}
 
 function getRandomGIF(gifTag, senderName, userEmail) {
+  console.log("getRandomGIF");
+  console.log(gifTag + " : " + senderName + " : " + userEmail);
   senderName = senderName || "gimmegif";
 
   var gifGetRequest = "http://api.giphy.com/v1/gifs/random?api_key=" + GiphyAPIKey;
@@ -107,15 +111,7 @@ function getRandomGIF(gifTag, senderName, userEmail) {
 
         if(typeof userEmail != "undefined")
         {
-          //send email to user with GIF
-          request.post(
-            applicationReplyUrl,
-            { form: {imgUrl: imgUrl, gifTag:gifTag, senderName:senderName, userEmail:userEmail} },
-            function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                }
-              }
-          );
+          sendEmail(imgUrl, gifTag, senderName, userEmail);
         }
       } else {
         getRandomGIF();
