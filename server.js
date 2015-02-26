@@ -16,7 +16,6 @@ var express = require('express')
   , path = require('path')
   , app = express()
   , http = require('http')
-  , port = process.env.PORT || 3000
   , domain = process.env.DOMAIN || 'localhost'
   , mimelib = require("mimelib")
   , request = require('request')
@@ -32,7 +31,7 @@ var fromReplyEmail = 'gif@gimmegif.io';
 
 var env = process.env.NODE_ENV || 'development';
 
-app.set('port', port);
+app.set('port', process.env.HTTP_PORT || 3000);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(multer());
