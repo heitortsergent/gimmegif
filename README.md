@@ -5,11 +5,11 @@
 
 # gimmegif
 
-This is a demo application that allows the user to search for GIFs, built with Node.js, that uses both Giphy and the SendGrid API. You can use the website to search for GIFs, or you can email <gimmegif@bymail.in> with a query in the subject, to get an email response back with the GIF and also have that appear in the application using the SendGrid Inbound Parse API.
+This is a demo application that allows the user to search for GIFs, built with Node.js, that uses both Giphy and the SendGrid API. You can use the website to search for GIFs, or you can email <gif@heitortsergent.bymail.in> with a query in the subject, to get an email response back with the GIF and also have that appear in the application using the SendGrid Inbound Parse API.
 
 ## Live Example
 
-Head over to [http://gimmegif.jit.su/](http://gimmegif.jit.su/) to see the app running. You can search inside the app for a GIF, or by sending an email to [gimmegif@bymail.in](mailto:gimmegif@bymail.in) . Anyone with the web page open will see the GIF that was requested.
+Head over to [http://gimmegif.jit.su/](http://gimmegif.jit.su/) to see the app running. You can search inside the app for a GIF, or by sending an email to [gif@heitortsergent.bymail.in](mailto:gif@heitortsergent.bymail.in) . Anyone with the web page open will see the GIF that was requested.
 
 ## Usage
 
