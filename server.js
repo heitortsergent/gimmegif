@@ -57,7 +57,7 @@ app.post('/email', function(req,res) {
   
   getRandomGIF(gifTag, senderName, userEmail);
 
-  res.sendStatus(200);
+  res.status(200).send('OK');
 });
 
 function sendEmail(imgUrl, gifTag, senderName, userEmail) {
