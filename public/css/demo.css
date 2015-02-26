@@ -411,4 +411,27 @@ body {
     margin-left: 0 !important;
     margin-bottom: 20px;
   }
+  .container-fluid {
+    width: auto;
+  }
+  body,
+  html {
+    max-width: 460px;
+  }
+  body {
+    margin: 0 10px;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  #submit_btn {
+    width: 100%;
+    margin: 10px 0;
+  }
+  #inputGIF {
+    width: 100%;
+  }
+  .gimmegiflogo {
+    margin-left: 0;
+  }
 }

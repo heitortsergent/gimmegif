@@ -17,13 +17,12 @@ $(function() {
   });
 });
 
-function sendGifRequest(gifTag) {
-  gifTag = gifTag;
+function sendGifRequest(gifString) {
   $.ajax({
     type: "POST",
     url: "/gimme",
-    data: { gifTag:gifTag},
-    success: function() {
+    data: { gifTag: gifString },
+    success: function(data) {
     }
   });
 }
