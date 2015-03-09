@@ -42,7 +42,9 @@ npm install
 node server.js
 ```
 
-Or if you have [azk](http://www.azk.io/) installed, just run:
+### Testing locally with azk
+
+If you have [azk](http://www.azk.io/) installed, just run:
 
 ```
 $ azk start
